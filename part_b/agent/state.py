@@ -1,4 +1,5 @@
 from typing import List, Tuple
+from referee.game.actions import Action
 
 from referee.game.player import PlayerColor
 from referee.game.hex import HexPos
@@ -25,13 +26,18 @@ class State:
         return True
 
  
-    def get_legal_actions(self) -> List[HexPos]:
-        legal_actions = []
+    def get_legal_actions(self) -> Action:  # List[HexPos] 
+        #修改，使其可以返回所有可能的下一步动作，例如：SpawnAction(HexPos(3, 3)) SpreadAction(HexPos(3, 3), HexDir.Up)
+        
+        # 该函数返回当前状态下所有合法的动作
+        """legal_actions = []
         for i in range(len(self.board)):
             for j in range(len(self.board[i])):
                 if self.board[i][j] == 0:
                     legal_actions.append(HexPos(i, j))
-        return legal_actions
+        return legal_actions """
+        
+ 
     
 
     def get_next_state(self, action: Tuple[int, int]) -> 'State':

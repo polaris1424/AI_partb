@@ -45,7 +45,7 @@ class Node:
                 return float("inf")
             return child.wins / child.visits + sqrt(2 * log(self.visits) / child.visits)
 
-        return max(self.children.values(), key=ucb1)
+        return max(self.children.values(), key=ucb1)  #返回最大值的child node
 
     
     def expand(self, action: Action) -> 'Node':

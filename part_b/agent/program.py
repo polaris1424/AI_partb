@@ -29,7 +29,6 @@ class Agent:
                 print("Testing: I am playing as red")
             case PlayerColor.BLUE:
                 print("Testing: I am playing as blue")
-   
         self.root = Node()
 
      
@@ -62,11 +61,11 @@ class Agent:
         if node.is_terminal():
             # 如果是终止节点，直接返回 None
             return None
-        """节点A有三个子节点，其中节点1和节点2已被访问和拓展，但是节点3还未被访问和拓展。
-        因此，节点A尚未被完全扩展，我们需要选择一个未扩展的子节点进行扩展，返回节点A。   
+        """节点A有三个子节点,其中节点1和节点2已被访问和拓展,但是节点3还未被访问和拓展。
+        因此,节点A尚未被完全扩展,我们需要选择一个未扩展的子节点进行扩展,返回节点A。   
         """
-        """如果节点A的每个子节点都已经被访问和拓展，那么在执行MCTS的selection步骤时，
-        会选择具有最高UCB1值的子节点进行拓展。因此，如果在这种情况下执行selection，
+        """如果节点A的每个子节点都已经被访问和拓展,那么在执行MCTS的selection步骤时,
+        会选择具有最高UCB1值的子节点进行拓展。因此,如果在这种情况下执行selection,
         它应该返回具有最高UCB1值的子节点。
         """
 
@@ -74,10 +73,11 @@ class Agent:
             return node
         else:
             c = 1
+            # 选择具有最高UCB1值的子节点进行拓展
             best_child = node.get_best_child(c)
-            return self.selection(best_child)
+            return  best_child
          
-
+ 
     def expansion(self, node: Node, action: Action)->Node:
         # expand the selected node by adding a new child node  
 
@@ -89,7 +89,7 @@ class Agent:
             return None
         else:
             # 选择一个未扩展的动作进行扩展
-            actions = node.get_untried_actions()
+            actions = node.get_untried_actions() #修改？？
             action = random.choice(actions)
             new_node = node.expand(action)
 
